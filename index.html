@@ -1,166 +1,269 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Ash - Software Engineer & Cybersecurity Enthusiast</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      background:linear-gradient(180deg,#020212 0%,#0a0a2a 100%);
-      font-family:"Orbitron",sans-serif;
-      color:#e0f2ff;
-      line-height:1.7;
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ash — ashmc.co.uk</title>
+<meta name="description" content="Ash — Personal profile. Contact: hi@ashmc.co.uk" />
+<style>
+  /* ---- Reset & layout ---- */
+  :root{
+    --bg:#0f1113;
+    --panel:#16181a;
+    --muted:#9aa0a6;
+    --text:#e6eef3;
+    --accent:#5cff9d;
+    --radius:12px;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#f5f7fa;
+      --panel:#ffffff;
+      --muted:#6b7280;
+      --text:#0b1220;
+      --accent:#0b63ff;
     }
-    a{color:#00bfff;text-decoration:none}
-    a:hover{color:#ec4899}
-    /* Navbar */
-    nav{
-      position:sticky;top:0;z-index:1000;
-      background:rgba(0,0,25,0.85);
-      backdrop-filter:blur(8px);
-      border-bottom:1px solid rgba(0,191,255,0.3);
-      padding:15px 20px;
-      box-shadow:0 0 15px rgba(0,191,255,0.2);
-    }
-    nav .menu-icon{display:none;font-size:1.8rem;color:#00bfff;cursor:pointer;}
-    nav .menu{display:flex;justify-content:center;gap:35px;flex-wrap:wrap;}
-    nav a{color:#e0f2ff;font-weight:600;transition:.3s;font-size:1.05rem;}
-    nav a:hover{color:#00bfff;text-shadow:0 0 10px #00bfff;}
-    #menu-toggle{display:none;}
-    @media (max-width:768px){
-      nav .menu-icon{display:block;text-align:center;margin-bottom:10px;}
-      nav .menu{
-        display:none;
-        flex-direction:column;
-        background:rgba(0,0,25,0.95);
-        border-top:1px solid rgba(0,191,255,0.3);
-        padding:15px 0;
-      }
-      nav .menu a{
-        padding:12px 0;
-        border-bottom:1px solid rgba(0,191,255,0.15);
-        text-align:center;
-      }
-      #menu-toggle:checked + label + .menu{display:flex;}
-    }
-    /* Layout */
-    .container{max-width:1100px;margin:auto;padding:0 20px;}
-    section{padding:80px 0;text-align:center;}
-    h2{font-size:2rem;margin-bottom:25px;text-shadow:0 0 15px rgba(0,191,255,0.7);}
-    p{max-width:800px;margin:auto;}
-    /* Hero */
-    .hero{text-align:center;padding:100px 20px 80px;}
-    .hero img{
-      width:200px;height:200px;border-radius:50%;
-      border:5px solid #00bfff;
-      box-shadow:0 0 40px #00bfff,0 0 80px #ec4899;
-      animation:pulse 3s infinite;
-    }
-    .hero h1{
-      font-size:3rem;margin-top:20px;
-      background:linear-gradient(90deg,#00bfff,#ec4899);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      text-shadow:0 0 15px rgba(0,191,255,0.3);
-    }
-    .hero p{font-size:1.3rem;color:#a0dfff;margin-top:10px;}
-    @keyframes pulse{
-      0%,100%{box-shadow:0 0 40px #00bfff,0 0 80px #ec4899;}
-      50%{box-shadow:0 0 60px #00bfff,0 0 100px #ec4899;}
-    }
-    /* Panels */
-    .panel{
-      background:rgba(0,0,25,0.7);
-      border:1px solid rgba(0,191,255,0.3);
-      border-radius:20px;
-      padding:40px;
-      box-shadow:0 0 25px rgba(0,191,255,0.15);
-      margin-top:30px;
-      transition:transform .3s,box-shadow .3s;
-    }
-    .panel:hover{transform:translateY(-5px);box-shadow:0 0 30px rgba(0,191,255,0.4);}
-    /* Hobbies */
-    .hobbies{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;margin-top:20px;}
-    .hobbies li{
-      list-style:none;background:rgba(0,0,25,0.85);
-      border:1px solid rgba(0,191,255,0.4);
-      border-radius:12px;
-      padding:12px 24px;
-      transition:.3s;
-      box-shadow:0 0 10px rgba(0,191,255,0.2);
-    }
-    .hobbies li:hover{transform:translateY(-3px);box-shadow:0 0 20px rgba(0,191,255,0.5);}
-    /* Socials */
-    .socials{display:flex;flex-wrap:wrap;gap:25px;justify-content:center;margin-top:20px;}
-    .socials a{font-size:2rem;color:#e0f2ff;transition:.3s;}
-    .socials a:hover{color:#00bfff;transform:scale(1.2);}
-    .contact a{color:#00bfff;font-size:1.2rem;}
-    .contact a:hover{text-decoration:underline;}
-    footer{text-align:center;padding:25px;color:#888;font-size:0.9rem;margin-top:40px;border-top:1px solid rgba(0,191,255,0.2);}
-  </style>
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, var(--mono);
+    background:linear-gradient(180deg,var(--bg), #0b0d0f 200%);
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+  }
+
+  /* ---- Card ---- */
+  .card{
+    width:100%;
+    max-width:880px;
+    background:var(--panel);
+    border-radius:var(--radius);
+    box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+    border:1px solid rgba(255,255,255,0.03);
+    overflow:hidden;
+  }
+
+  .bar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:linear-gradient(180deg,rgba(0,0,0,0.03),transparent)}
+  .dot{width:12px;height:12px;border-radius:50%}
+  .dot.r{background:#ff5f57} .dot.y{background:#ffbd2e} .dot.g{background:#28c840}
+  .addr{margin-left:auto;color:var(--muted);font-size:13px}
+
+  .content{display:grid;grid-template-columns:1fr 320px;gap:24px;padding:22px}
+  @media (max-width:880px){ .content{grid-template-columns:1fr; padding:18px} .sidebar{order:2} }
+
+  .terminal{
+    background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent);
+    border-radius:10px;
+    padding:18px;
+    border:1px solid rgba(255,255,255,0.02);
+  }
+  .profile-row{display:flex;gap:16px;align-items:center}
+  .pfp{
+    width:86px;height:86px;border-radius:12px;object-fit:cover;border:2px solid rgba(255,255,255,0.04);
+  }
+  .name{font-size:20px;margin:0;font-weight:700}
+  .sub{margin:4px 0 0 0;color:var(--muted);font-size:13px}
+
+  .divider{height:1px;background:rgba(255,255,255,0.02);margin:16px 0;border-radius:2px}
+
+  .output{
+    background:transparent;
+    padding:12px;
+    min-height:180px;
+    max-height:360px;
+    overflow:auto;
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--accent);
+    line-height:1.5;
+    border-radius:8px;
+    border:1px dashed rgba(255,255,255,0.02);
+  }
+  .output a{ color:var(--accent); text-decoration:underline; }
+
+  .prompt-line{display:flex;gap:8px;align-items:center;margin-top:12px}
+  .prompt-prefix{color:var(--accent);font-weight:700;font-family:var(--mono)}
+  .cmd-input{
+    flex:1;background:transparent;border:0;outline:none;color:var(--text);font-family:var(--mono);font-size:14px;padding:6px 8px;border-radius:6px;
+  }
+  .cmd-input::placeholder{color:rgba(150,160,170,0.6)}
+  .btn{border:0;background:var(--accent);color:white;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)}
+
+  .sidebar{display:flex;flex-direction:column;gap:12px}
+  .card-block{background:linear-gradient(180deg,rgba(255,255,255,0.015),transparent);padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+  .meta-row{display:flex;justify-content:space-between;align-items:center}
+  .meta-row b{font-size:15px}
+  .links a{display:block;color:var(--text);text-decoration:none;margin:8px 0;font-family:var(--mono)}
+  .links a small{display:block;color:var(--muted)}
+
+  .muted{color:var(--muted)}
+  footer{padding:14px 22px;text-align:center;color:var(--muted);font-size:13px}
+
+  .fade-in{opacity:0;transform:translateY(6px);transition:all .45s ease}
+  .fade-in.show{opacity:1;transform:none}
+</style>
 </head>
 <body>
-  <nav>
-    <input type="checkbox" id="menu-toggle">
-    <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
-    <div class="menu">
-      <a href="#about">About</a>
-      <a href="#hobbies">Hobbies</a>
-      <a href="#socials">Socials</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
 
-  <section class="hero">
-    <img src="https://avatars.githubusercontent.com/u/86099863?v=4" alt="Ash Avatar">
-    <h1>Hey! I'm Ash</h1>
-    <p>Software Engineer &amp; Cybersecurity Enthusiast</p>
-  </section>
-
-  <div class="container">
-    <section id="about" class="panel">
-      <h2>About Me</h2>
-      <p>I'm Ash, a passionate software engineer and cybersecurity enthusiast who thrives on building secure, efficient applications. Ever since I was a kid, technology has been my playground—now it’s my career and my creative outlet. I love problem-solving, exploring emerging tech, and sharing knowledge with the community.</p>
-    </section>
-
-    <section id="hobbies" class="panel">
-      <h2>My Hobbies</h2>
-      <ul class="hobbies">
-        <li>Photography</li>
-        <li>Gaming</li>
-        <li>Watching Movies</li>
-        <li>Listening to Music</li>
-        <li>Everything Technology</li>
-      </ul>
-    </section>
-
-    <section id="socials" class="panel">
-      <h2>Social Media</h2>
-      <div class="socials">
-        <a href="#"><i class="fa-brands fa-discord"></i></a>
-        <a href="#"><i class="fa-brands fa-telegram"></i></a>
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#"><i class="fa-solid fa-cloud"></i></a>
-        <a href="#"><i class="fa-brands fa-reddit"></i></a>
-        <a href="#"><i class="fa-brands fa-twitch"></i></a>
-        <a href="#"><i class="fa-brands fa-steam"></i></a>
-        <a href="#"><i class="fa-brands fa-github"></i></a>
-        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-      </div>
-    </section>
-
-    <section id="contact" class="panel contact">
-      <h2>Contact</h2>
-      <p>Email me at <a href="mailto:hello@ashmc.co.uk">hello@ashmc.co.uk</a></p>
-    </section>
+<div class="card" role="region" aria-label="Ash profile">
+  <div class="bar">
+    <div class="dot r"></div>
+    <div class="dot y"></div>
+    <div class="dot g"></div>
+    <div class="addr">ash@ashmc: ~/profile</div>
   </div>
 
-  <footer>© 2025 Ash — All rights reserved.</footer>
+  <div class="content">
+    <div>
+      <div class="terminal">
+        <div class="profile-row">
+          <img src="https://pbs.twimg.com/profile_images/1996581001670049793/B7H2We2V_400x400.jpg" alt="Ash profile" class="pfp" />
+          <div>
+            <p class="name">Hey — I'm Ash</p>
+            <p class="sub">Cybersecurity & infrastructure enthusiast</p>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="output" id="output"><div class="fade-in show">Type <code>help</code> and press Enter to get started.</div></div>
+
+        <div class="prompt-line">
+          <div class="prompt-prefix">&gt; ash@ashmc</div>
+          <input id="cmd" class="cmd-input" placeholder="enter command (try: help)" />
+          <button id="exec" class="btn">Run</button>
+        </div>
+      </div>
+
+      <footer>Built for <strong>ashmc.co.uk</strong></footer>
+    </div>
+
+    <aside class="sidebar">
+      <div class="card-block fade-in show" id="quick">
+        <div class="meta-row">
+          <div>
+            <div class="muted">Email</div>
+            <b>hi@ashmc.co.uk</b>
+          </div>
+          <div style="text-align:right">
+            <div class="muted">Location</div>
+            <div>—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-block fade-in show">
+        <div class="muted" style="margin-bottom:8px">Socials</div>
+        <div class="links">
+          <a href="https://x.com/configing">X: @configing<small>microblog</small></a>
+          <a href="https://instagram.com/configing">Instagram: @configing<small>photos & stories</small></a>
+          <a href="https://twitch.tv/configing">Twitch: configing<small>streams</small></a>
+          <a href="https://github.com/configing">GitHub: configing<small>repos</small></a>
+          <a href="https://discord.configing.dev">Discord Server<small>community</small></a>
+        </div>
+      </div>
+
+      <div class="card-block fade-in show">
+        <div class="muted" style="margin-bottom:8px">Quick commands</div>
+        <div style="font-family:var(--mono);font-size:13px;color:var(--muted)">
+          <div><code>help</code> — show commands</div>
+          <div><code>about</code> — short bio</div>
+          <div><code>socials</code> — links</div>
+          <div><code>contact</code> — email</div>
+          <div><code>clear</code> — clear terminal</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const out = document.getElementById('output');
+  const input = document.getElementById('cmd');
+  const exec = document.getElementById('exec');
+
+  setTimeout(()=> input.focus(), 150);
+
+  document.querySelectorAll('.fade-in').forEach((el,i)=> setTimeout(()=> el.classList.add('show'), 80*i));
+
+  function writeLine(text, cls){
+    const el = document.createElement('div');
+    el.textContent = text;
+    if(cls) el.className = cls;
+    out.appendChild(el);
+    out.scrollTop = out.scrollHeight;
+  }
+
+  function writeHTML(html){
+    const wrap = document.createElement('div');
+    wrap.innerHTML = html;
+    wrap.querySelectorAll('a').forEach(a => a.style.color = 'var(--accent)');
+    out.appendChild(wrap);
+    out.scrollTop = out.scrollHeight;
+  }
+
+  function clearOut(){ out.innerHTML = ''; }
+
+  const commands = {
+    help(){
+      writeHTML('<div style="color:var(--accent)">Available commands: <code>help</code>, <code>about</code>, <code>socials</code>, <code>contact</code>, <code>clear</code></div>');
+    },
+    about(){
+      writeHTML('<div><strong>Ash</strong><div class="muted" style="margin-top:6px;color:var(--accent)">Cybersecurity & infrastructure enthusiast.</div></div>');
+    },
+    socials(){
+      writeHTML(`<div>
+          <div><a href="https://x.com/configing">X: @configing</a></div>
+          <div><a href="https://instagram.com/configing">Instagram: @configing</a></div>
+          <div><a href="https://twitch.tv/configing">Twitch: configing</a></div>
+          <div><a href="https://github.com/configing">GitHub: configing</a></div>
+          <div><a href="https://discord.configing.dev">Discord Server</a></div>
+        </div>`);
+    },
+    contact(){
+      writeHTML('<div>Email: <a href="mailto:hi@ashmc.co.uk">hi@ashmc.co.uk</a></div>');
+    },
+    clear(){ clearOut(); }
+  };
+
+  function runCommand(raw){
+    const cmd = (raw||'').trim().toLowerCase();
+    if(!cmd) return;
+    writeHTML(`<div>&gt; ${escapeHtml(raw)}</div>`);
+    if(commands[cmd]) commands[cmd]();
+    else{
+      writeLine(`Command not found: ${cmd}`, 'muted');
+      writeLine(`Type 'help' for a list of commands.`, 'muted');
+    }
+  }
+
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  }
+
+  input.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      const v = input.value;
+      runCommand(v);
+      input.value = '';
+    }
+  });
+
+  exec.addEventListener('click', ()=>{
+    runCommand(input.value);
+    input.value = '';
+    input.focus();
+  });
+});
+</script>
+
 </body>
 </html>
